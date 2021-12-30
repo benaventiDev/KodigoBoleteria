@@ -1,13 +1,14 @@
 package org.example;
 
-/**
- * Hello world!
- *
- */
+import java.util.Scanner;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Scanner scan = new Scanner(System.in);
+        System.out.println("¿Es mayor de edad? ");
+        boolean mayor = scan.nextBoolean();
+        System.out.println();
     }
 }
