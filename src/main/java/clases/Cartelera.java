@@ -3,28 +3,33 @@ package clases;
 import interfaces.CarteleraInterface;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Cartelera implements CarteleraInterface {
     public int iD;
-    public double precio;
     public ArrayList<String> carteleraPeliculas;
+    public Map<Integer, ArrayList<Object>> fechasDisponibles;
 
-    public Cartelera(int iD, double precio, ArrayList<String> carteleraPeliculas) {
+    public Cartelera(int iD, ArrayList<String> carteleraPeliculas, Map<Integer, ArrayList<Object>> fechasDisponibles) {
         this.iD = iD;
-        this.precio = precio;
         this.carteleraPeliculas = carteleraPeliculas;
+        this.fechasDisponibles = fechasDisponibles;
     }
 
     public int getID() {
         return iD;
     }
 
-    public double getPrecio() {
-        return precio;
+    public Map<Integer, ArrayList<Object>> getFechasDisponibles() {
+        return fechasDisponibles;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setFechasDisponibles(Map<Integer, ArrayList<Object>> fechasDisponibles) {
+        this.fechasDisponibles = fechasDisponibles;
+    }
+
+    public double getPrecio() {
+        return precio;
     }
 
     public ArrayList<String> getCarteleraPeliculas() {
@@ -36,17 +41,12 @@ public class Cartelera implements CarteleraInterface {
     }
 
     @Override
-    public void filtroFecha() {
-
+    public ArrayList<Object> filtroFecha(int eleccion) {
+        return getFechasDisponibles().get(eleccion);
     }
 
     @Override
     public void hrDisponible() {
-
-    }
-
-    @Override
-    public void mostrarPeliculas() {
 
     }
 }
