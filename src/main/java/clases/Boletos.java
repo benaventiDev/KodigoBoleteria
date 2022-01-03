@@ -3,14 +3,13 @@ import interfaces.BoletosInterface;
 
 public class Boletos<T> implements BoletosInterface {
     public int cantidad, iD;
-    public boolean adulto, subtitulos;
+    public boolean adulto;
     public final T fechaFuncion;
 
-    public Boletos(int cantidad, int iD, boolean adulto, boolean subtitulos, T fechaFuncion) {
+    public Boletos(int cantidad, int iD, boolean adulto, T fechaFuncion) {
         this.cantidad = cantidad;
         this.iD = iD;
         this.adulto = adulto;
-        this.subtitulos = subtitulos;
         this.fechaFuncion = fechaFuncion;
     }
 
@@ -34,21 +33,14 @@ public class Boletos<T> implements BoletosInterface {
         this.adulto = adulto;
     }
 
-    public boolean isSubtitulos() {
-        return subtitulos;
-    }
-
-    public void setSubtitulos(boolean subtitulos) {
-        this.subtitulos = subtitulos;
-    }
-
     public T getFechaFuncion() {
         return fechaFuncion;
     }
 
     @Override
-    public void factura() {
-        // Logica de si es niño o adulto
+    public double factura() {
+        if (adulto) { return precio * 0.70; }
+        else return precio;
     }
 
     @Override

@@ -5,12 +5,10 @@ import interfaces.SalasInterface;
 public class Salas implements SalasInterface {
 
     int nroAsientosTotales, nroSala;
-    boolean subtitulos;
 
-    public Salas() {
+    public Salas(int nroSala) {
         this.nroAsientosTotales = nroAsientosTotales;
         this.nroSala = nroSala;
-        this.subtitulos = subtitulos;
     }
 
     public int getNroAsientosTotales() {
@@ -29,18 +27,8 @@ public class Salas implements SalasInterface {
         this.nroSala = nroSala;
     }
 
-    public boolean isSubtitulos() {
-        return subtitulos;
-    }
-
-    public void setSubtitulos(boolean subtitulos) {
-        this.subtitulos = subtitulos;
-    }
-
     @Override
-    public void nroAsientosDisponibles() {
-        // Logica para calcular los asientos disponibles
-        // en relacion a la pelicula, sala y horario
+    public int nroAsientosDisponibles(int nroAsientosOcupados) {
+        return (nroAsientosTotales - nroAsientosOcupados);
     }
-
 }

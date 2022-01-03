@@ -1,9 +1,9 @@
 package interfaces;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface CarteleraInterface {
-    double precio = 300.00;
-    ArrayList<Object> filtroFecha(int eleccion);
-    void hrDisponible();
+    ArrayList<Object> filtroFecha(String pelicula);
+    Object hrDisponible(String pelicula, LocalDate dia);
 }

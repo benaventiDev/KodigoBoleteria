@@ -1,6 +1,6 @@
 package interfaces;
 
 public interface SalasInterface {
-    int NroAsientosTotales = 30;
-    void nroAsientosDisponibles();
+    int nroAsientosTotales = 30;
+    int nroAsientosDisponibles(int nroAsientosOcupados);
 }
