@@ -140,44 +140,53 @@ public class App
 
         ///////////////////////////////////////////////////////////////////////
 
+        boolean continuar = true;
+        ArrayList<String> informacion = new ArrayList<>();
+        System.out.println("Bienvenido a Cinecode, ¿que pelicula desea ver? ");
+
         // INICIALIZO UN SCANNER PARA QUE EL USUARIO PUEDA INGRESAR DATOS
         Scanner scan = new Scanner(System.in);
-        System.out.println("Bienvenido a Cinecode, ¿que pelicula desea ver? ");
-        // SE INSTANCIAN LAS CLASES
-        Cartelera cartelera = new Cartelera(10, peliculas, fechasLibres, horasLibres);
-        Salas sala = new Salas();
-        sala.setNroAsientosOcupados(10);
+        
+        while (continuar) {
+            // SE INSTANCIAN LAS CLASES
+            Cartelera cartelera = new Cartelera(10, peliculas, fechasLibres, horasLibres);
+            Salas sala = new Salas();
+            sala.setNroAsientosOcupados(10);
 
-        System.out.println(cartelera.getCarteleraPeliculas());
-        // EL USUARIO INGRESA UN ENTERO SEGUN LA POSICION DE LA PELICULA QUE SE MUESTRA EN PANTALLA
-        String eleccion = scan.nextLine();
-        sala.setNroSala((int) Math.round(Math.random() * (10 + 1)));
+            System.out.println(cartelera.getCarteleraPeliculas());
+            // EL USUARIO INGRESA UN ENTERO SEGUN LA POSICION DE LA PELICULA QUE SE MUESTRA EN PANTALLA
+            String eleccion = scan.next();
+            sala.setNroSala((int) Math.round(Math.random() * (10 + 1)));
 
-        System.out.println("Estos son las fechas disponibles para esa pelicula: ");
-        // SE MUESTRAN EN PANTALLA LAS FECHAS DISPONIBLES PARA VER ESA PELICULA
-        System.out.println(cartelera.filtroFecha(eleccion));
+            System.out.println("Estos son las fechas disponibles para esa pelicula: ");
+            // SE MUESTRAN EN PANTALLA LAS FECHAS DISPONIBLES PARA VER ESA PELICULA
+            System.out.println(cartelera.filtroFecha(eleccion));
 
-        // SE DEBE SELECCIONAR LA FECHA A LA QUE SE DESEA ASISTIR
-        System.out.println("Seleccione la fecha a la que desea asistir: ");
-        int eleccionInt = scan.nextInt();
-        ArrayList<Object> horariosDisponibles = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1));
-        System.out.println(horariosDisponibles);
-        System.out.println("Seleccione el horario al que desea asistir");
-        int eleccionInt2 = scan.nextInt();
-        Object horario = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1)).get(eleccionInt2 - 1);
-        System.out.println(horario);
-        LocalDateTime dateFunction = LocalDateTime.of((LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1), (LocalTime) horario);
-        System.out.println("Ingrese la cantidad de boletos que desea: ");
-        int cantidad = scan.nextInt();
-        System.out.println("Ingrese si es mayor de edad: ");
-        boolean mayor = scan.nextBoolean();
-        Boletos ticket = new Boletos(cantidad, 3, mayor, dateFunction);
-        System.out.println("Este es su ticket");
-        String informacion = "Precio " + ticket.factura(cantidad) + " Asiento numero: " + ticket.nroAsiento(sala.getNroAsientosOcupados()) + " Numero de sala: " + sala.getNroSala();
-        System.out.println(informacion);
-        sala.setNroAsientosOcupados(cantidad);
+            // SE DEBE SELECCIONAR LA FECHA A LA QUE SE DESEA ASISTIR
+            System.out.println("Seleccione la fecha a la que desea asistir: ");
+            int eleccionInt = scan.nextInt();
+            ArrayList<Object> horariosDisponibles = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1));
+            System.out.println(horariosDisponibles);
+            System.out.println("Seleccione el horario al que desea asistir");
+            int eleccionInt2 = scan.nextInt();
+            Object horario = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1)).get(eleccionInt2 - 1);
+            System.out.println(horario);
+            LocalDateTime dateFunction = LocalDateTime.of((LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1), (LocalTime) horario);
+            System.out.println("Ingrese la cantidad de boletos que desea: ");
+            int cantidad = scan.nextInt();
+            System.out.println("Ingrese si es mayor de edad: ");
+            boolean mayor = scan.nextBoolean();
+            Boletos ticket = new Boletos(cantidad, 3, mayor, dateFunction);
+            System.out.println("Este es su ticket");
+            String data = "Precio " + ticket.factura(cantidad) + " Asiento numero: " + ticket.nroAsiento(sala.getNroAsientosOcupados()) + " Numero de sala: " + sala.getNroSala();
+            informacion.add(data);
+            System.out.println(informacion);
+            sala.setNroAsientosOcupados(cantidad);
+            System.out.println("¿Desea realizar otra compra?");
+            continuar = scan.nextBoolean();
+        }
         Imprimir impresora = new Imprimir();
-        impresora.exportar(informacion);
+        impresora.exportar(String.valueOf(informacion));
         scan.close();
     }
 }
