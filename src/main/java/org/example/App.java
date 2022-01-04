@@ -19,10 +19,10 @@ public class App
         // A FALTA DE UNA DB ES NECESARIO CREAR Y CARGAR ARRAYS MANUALMENTE
         // PELICULAS DISPONIBLES EN CARTELERA
         ArrayList<String> peliculas = new ArrayList();
-        peliculas.add("Psycho");
-        peliculas.add("Vertigo");
-        peliculas.add("Citizen Kane");
-        peliculas.add("Casablanca");
+        peliculas.add("psycho");
+        peliculas.add("vertigo");
+        peliculas.add("citizen kane");
+        peliculas.add("casablanca");
 
         // FECHAS DISPONIBLES PARA CADA PELICULA EN CARTELERA
         ArrayList<Object> psychoFechas = new ArrayList();
@@ -67,10 +67,10 @@ public class App
 
         // CLAVE - VALOR PARA LLAMAR MEDIANTE UN ID LAS FECHAS DISPONIBLES DE UNA PELICULA
         HashMap<String, ArrayList<Object>> fechasLibres = new HashMap<>();
-        fechasLibres.put("Psycho", psychoFechas);
-        fechasLibres.put("Vertigo", vertigoFechas);
-        fechasLibres.put("Citizen Kane", citizenKaneFechas);
-        fechasLibres.put("Casablanca", casablancaFechas);
+        fechasLibres.put("psycho", psychoFechas);
+        fechasLibres.put("vertigo", vertigoFechas);
+        fechasLibres.put("citizen kane", citizenKaneFechas);
+        fechasLibres.put("casablanca", casablancaFechas);
 
         // CLAVE - VALOR PARA LAS HORAS DISPONIBLES EN CADA FECHA
         HashMap<Object, HashMap<String, ArrayList<Object>>> horasLibres = new HashMap<>();
@@ -84,7 +84,7 @@ public class App
         psychoTime.add(psychoTime2);
         psychoTime.add(psychoTime3);
         psychoTime.add(psychoTime4);
-        psychoHoras.put("Psycho", psychoTime);
+        psychoHoras.put("psycho", psychoTime);
         horasLibres.put(psycho1, psychoHoras);
         horasLibres.put(psycho2, psychoHoras);
         horasLibres.put(psycho3, psychoHoras);
@@ -100,7 +100,7 @@ public class App
         vertigoTime.add(vertigoTime2);
         vertigoTime.add(vertigoTime3);
         vertigoTime.add(vertigoTime4);
-        vertigoHoras.put("Vertigo", vertigoTime);
+        vertigoHoras.put("vertigo", vertigoTime);
         horasLibres.put(vertigo1, vertigoHoras);
         horasLibres.put(vertigo2, vertigoHoras);
         horasLibres.put(vertigo3, vertigoHoras);
@@ -116,7 +116,7 @@ public class App
         citizenKaneTime.add(citizenKaneTime2);
         citizenKaneTime.add(citizenKaneTime3);
         citizenKaneTime.add(citizenKaneTime4);
-        citizenKaneHoras.put("Citizen Kane", citizenKaneTime);
+        citizenKaneHoras.put("citizen kane", citizenKaneTime);
         horasLibres.put(citizenKane1, citizenKaneHoras);
         horasLibres.put(citizenKane2, citizenKaneHoras);
         horasLibres.put(citizenKane3, citizenKaneHoras);
@@ -132,7 +132,7 @@ public class App
         casablancaTime.add(casablancaTime2);
         casablancaTime.add(casablancaTime3);
         casablancaTime.add(casablancaTime4);
-        casablancaHoras.put("Casablanca", casablancaTime);
+        casablancaHoras.put("casablanca", casablancaTime);
         horasLibres.put(casablanca1, casablancaHoras);
         horasLibres.put(casablanca2, casablancaHoras);
         horasLibres.put(casablanca3, casablancaHoras);
@@ -155,7 +155,7 @@ public class App
 
             System.out.println(cartelera.getCarteleraPeliculas());
             // EL USUARIO INGRESA UN ENTERO SEGUN LA POSICION DE LA PELICULA QUE SE MUESTRA EN PANTALLA
-            String eleccion = scan.next();
+            String eleccion = scan.next().toLowerCase();
             sala.setNroSala((int) Math.round(Math.random() * (10 + 1)));
 
             System.out.println("Estos son las fechas disponibles para esa pelicula: ");
