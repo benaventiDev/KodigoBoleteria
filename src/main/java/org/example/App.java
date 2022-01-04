@@ -160,7 +160,6 @@ public class App
         // SE DEBE SELECCIONAR LA FECHA A LA QUE SE DESEA ASISTIR
         System.out.println("Seleccione la fecha a la que desea asistir: ");
         int eleccionInt = scan.nextInt();
-        System.out.println(cartelera.getHorasDisponibles());
         ArrayList<Object> horariosDisponibles = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1));
         System.out.println(horariosDisponibles);
         System.out.println("Seleccione el horario al que desea asistir");
