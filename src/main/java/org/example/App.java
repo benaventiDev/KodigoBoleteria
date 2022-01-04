@@ -16,9 +16,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        // INICIALIZO UN SCANNER PARA QUE EL USUARIO PUEDA INGRESAR DATOS
-        Scanner scan = new Scanner(System.in);
-
         // A FALTA DE UNA DB ES NECESARIO CREAR Y CARGAR ARRAYS MANUALMENTE
         // PELICULAS DISPONIBLES EN CARTELERA
         ArrayList<String> peliculas = new ArrayList();
@@ -29,40 +26,40 @@ public class App
 
         // FECHAS DISPONIBLES PARA CADA PELICULA EN CARTELERA
         ArrayList<Object> psychoFechas = new ArrayList();
-        LocalDate psycho1 = LocalDate.of(2021, 12, 23);
-        LocalDate psycho2 = LocalDate.of(2021, 12, 24);
-        LocalDate psycho3 = LocalDate.of(2021, 12, 23);
-        LocalDate psycho4 = LocalDate.of(2021, 12, 24);
+        LocalDate psycho1 = LocalDate.of(2021, 12, 11);
+        LocalDate psycho2 = LocalDate.of(2021, 11, 12);
+        LocalDate psycho3 = LocalDate.of(2021, 10, 13);
+        LocalDate psycho4 = LocalDate.of(2021, 9, 14);
         psychoFechas.add(psycho1);
         psychoFechas.add(psycho2);
         psychoFechas.add(psycho3);
         psychoFechas.add(psycho4);
 
         ArrayList<Object> vertigoFechas = new ArrayList();
-        LocalDate vertigo1 = LocalDate.of(2021, 12, 23);
-        LocalDate vertigo2 = LocalDate.of(2021, 12, 24);
-        LocalDate vertigo3 = LocalDate.of(2021, 12, 23);
-        LocalDate vertigo4 = LocalDate.of(2021, 12, 24);
+        LocalDate vertigo1 = LocalDate.of(2021, 8, 10);
+        LocalDate vertigo2 = LocalDate.of(2021, 7, 7);
+        LocalDate vertigo3 = LocalDate.of(2021, 6, 6);
+        LocalDate vertigo4 = LocalDate.of(2021, 5, 5);
         vertigoFechas.add(vertigo1);
         vertigoFechas.add(vertigo2);
         vertigoFechas.add(vertigo3);
         vertigoFechas.add(vertigo4);
 
         ArrayList<Object> citizenKaneFechas = new ArrayList();
-        LocalDate citizenKane1 = LocalDate.of(2021, 12, 23);
-        LocalDate citizenKane2 = LocalDate.of(2021, 12, 24);
-        LocalDate citizenKane3 = LocalDate.of(2021, 12, 23);
-        LocalDate citizenKane4 = LocalDate.of(2021, 12, 24);
+        LocalDate citizenKane1 = LocalDate.of(2021, 4, 1);
+        LocalDate citizenKane2 = LocalDate.of(2021, 3, 2);
+        LocalDate citizenKane3 = LocalDate.of(2021, 2, 3);
+        LocalDate citizenKane4 = LocalDate.of(2021, 1, 4);
         citizenKaneFechas.add(citizenKane1);
         citizenKaneFechas.add(citizenKane2);
         citizenKaneFechas.add(citizenKane3);
         citizenKaneFechas.add(citizenKane4);
 
         ArrayList<Object> casablancaFechas = new ArrayList();
-        LocalDate casablanca1 = LocalDate.of(2021, 12, 23);
-        LocalDate casablanca2 = LocalDate.of(2021, 12, 24);
-        LocalDate casablanca3 = LocalDate.of(2021, 12, 23);
-        LocalDate casablanca4 = LocalDate.of(2021, 12, 24);
+        LocalDate casablanca1 = LocalDate.of(2021, 9, 27);
+        LocalDate casablanca2 = LocalDate.of(2021, 9, 26);
+        LocalDate casablanca3 = LocalDate.of(2021, 9, 25);
+        LocalDate casablanca4 = LocalDate.of(2021, 9, 28);
         casablancaFechas.add(casablanca1);
         casablancaFechas.add(casablanca2);
         casablancaFechas.add(casablanca3);
@@ -79,10 +76,10 @@ public class App
         HashMap<Object, HashMap<String, ArrayList<Object>>> horasLibres = new HashMap<>();
         HashMap<String, ArrayList<Object>> psychoHoras = new HashMap<>();
         ArrayList<Object> psychoTime = new ArrayList<Object>();
-        LocalTime psychoTime1 = LocalTime.of(20, 30);
+        LocalTime psychoTime1 = LocalTime.of(18, 30);
         LocalTime psychoTime2 = LocalTime.of(19, 00);
         LocalTime psychoTime3 = LocalTime.of(20, 30);
-        LocalTime psychoTime4 = LocalTime.of(19, 00);
+        LocalTime psychoTime4 = LocalTime.of(21, 00);
         psychoTime.add(psychoTime1);
         psychoTime.add(psychoTime2);
         psychoTime.add(psychoTime3);
@@ -95,26 +92,26 @@ public class App
 
         HashMap<String, ArrayList<Object>> vertigoHoras = new HashMap<>();
         ArrayList<Object> vertigoTime = new ArrayList<Object>();
-        LocalTime vertigoTime1 = LocalTime.of(20, 30);
-        LocalTime vertigoTime2 = LocalTime.of(19, 00);
-        LocalTime vertigoTime3 = LocalTime.of(20, 30);
-        LocalTime vertigoTime4 = LocalTime.of(19, 00);
+        LocalTime vertigoTime1 = LocalTime.of(16, 30);
+        LocalTime vertigoTime2 = LocalTime.of(17, 00);
+        LocalTime vertigoTime3 = LocalTime.of(22, 30);
+        LocalTime vertigoTime4 = LocalTime.of(23, 00);
         vertigoTime.add(vertigoTime1);
         vertigoTime.add(vertigoTime2);
         vertigoTime.add(vertigoTime3);
         vertigoTime.add(vertigoTime4);
         vertigoHoras.put("Vertigo", vertigoTime);
         horasLibres.put(vertigo1, vertigoHoras);
-        horasLibres.put(vertigo2, psychoHoras);
-        horasLibres.put(vertigo3, psychoHoras);
-        horasLibres.put(vertigo4, psychoHoras);
+        horasLibres.put(vertigo2, vertigoHoras);
+        horasLibres.put(vertigo3, vertigoHoras);
+        horasLibres.put(vertigo4, vertigoHoras);
 
         HashMap<String, ArrayList<Object>> citizenKaneHoras = new HashMap<>();
         ArrayList<Object> citizenKaneTime = new ArrayList<Object>();
-        LocalTime citizenKaneTime1 = LocalTime.of(20, 30);
-        LocalTime citizenKaneTime2 = LocalTime.of(19, 00);
-        LocalTime citizenKaneTime3 = LocalTime.of(20, 30);
-        LocalTime citizenKaneTime4 = LocalTime.of(19, 00);
+        LocalTime citizenKaneTime1 = LocalTime.of(12, 30);
+        LocalTime citizenKaneTime2 = LocalTime.of(13, 00);
+        LocalTime citizenKaneTime3 = LocalTime.of(14, 30);
+        LocalTime citizenKaneTime4 = LocalTime.of(15, 00);
         citizenKaneTime.add(citizenKaneTime1);
         citizenKaneTime.add(citizenKaneTime2);
         citizenKaneTime.add(citizenKaneTime3);
@@ -127,10 +124,10 @@ public class App
 
         HashMap<String, ArrayList<Object>> casablancaHoras = new HashMap<>();
         ArrayList<Object> casablancaTime = new ArrayList<Object>();
-        LocalTime casablancaTime1 = LocalTime.of(20, 30);
-        LocalTime casablancaTime2 = LocalTime.of(19, 00);
-        LocalTime casablancaTime3 = LocalTime.of(20, 30);
-        LocalTime casablancaTime4 = LocalTime.of(19, 00);
+        LocalTime casablancaTime1 = LocalTime.of(8, 30);
+        LocalTime casablancaTime2 = LocalTime.of(9, 00);
+        LocalTime casablancaTime3 = LocalTime.of(10, 30);
+        LocalTime casablancaTime4 = LocalTime.of(11, 00);
         casablancaTime.add(casablancaTime1);
         casablancaTime.add(casablancaTime2);
         casablancaTime.add(casablancaTime3);
@@ -143,6 +140,8 @@ public class App
 
         ///////////////////////////////////////////////////////////////////////
 
+        // INICIALIZO UN SCANNER PARA QUE EL USUARIO PUEDA INGRESAR DATOS
+        Scanner scan = new Scanner(System.in);
         System.out.println("Bienvenido a Cinecode, ¿que pelicula desea ver? ");
         // SE INSTANCIAN LAS CLASES
         Cartelera cartelera = new Cartelera(10, peliculas, fechasLibres, horasLibres);
@@ -161,6 +160,7 @@ public class App
         // SE DEBE SELECCIONAR LA FECHA A LA QUE SE DESEA ASISTIR
         System.out.println("Seleccione la fecha a la que desea asistir: ");
         int eleccionInt = scan.nextInt();
+        System.out.println(cartelera.getHorasDisponibles());
         ArrayList<Object> horariosDisponibles = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1));
         System.out.println(horariosDisponibles);
         System.out.println("Seleccione el horario al que desea asistir");
