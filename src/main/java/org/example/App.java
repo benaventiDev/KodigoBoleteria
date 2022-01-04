@@ -153,37 +153,41 @@ public class App
             Salas sala = new Salas();
             sala.setNroAsientosOcupados(10);
 
-            System.out.println(cartelera.getCarteleraPeliculas());
-            // EL USUARIO INGRESA UN ENTERO SEGUN LA POSICION DE LA PELICULA QUE SE MUESTRA EN PANTALLA
-            String eleccion = scan.next().toLowerCase();
-            sala.setNroSala((int) Math.round(Math.random() * (10 + 1)));
+            try {
+                System.out.println(cartelera.getCarteleraPeliculas());
+                // EL USUARIO INGRESA UN ENTERO SEGUN LA POSICION DE LA PELICULA QUE SE MUESTRA EN PANTALLA
+                String eleccion = scan.next().toLowerCase();
+                sala.setNroSala((int) Math.round(Math.random() * (10 + 1)));
 
-            System.out.println("Estos son las fechas disponibles para esa pelicula: ");
-            // SE MUESTRAN EN PANTALLA LAS FECHAS DISPONIBLES PARA VER ESA PELICULA
-            System.out.println(cartelera.filtroFecha(eleccion));
+                System.out.println("Estos son las fechas disponibles para esa pelicula: ");
+                // SE MUESTRAN EN PANTALLA LAS FECHAS DISPONIBLES PARA VER ESA PELICULA
+                System.out.println(cartelera.filtroFecha(eleccion));
 
-            // SE DEBE SELECCIONAR LA FECHA A LA QUE SE DESEA ASISTIR
-            System.out.println("Seleccione la fecha a la que desea asistir: ");
-            int eleccionInt = scan.nextInt();
-            ArrayList<Object> horariosDisponibles = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1));
-            System.out.println(horariosDisponibles);
-            System.out.println("Seleccione el horario al que desea asistir");
-            int eleccionInt2 = scan.nextInt();
-            Object horario = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1)).get(eleccionInt2 - 1);
-            System.out.println(horario);
-            LocalDateTime dateFunction = LocalDateTime.of((LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1), (LocalTime) horario);
-            System.out.println("Ingrese la cantidad de boletos que desea: ");
-            int cantidad = scan.nextInt();
-            System.out.println("Ingrese si es mayor de edad: ");
-            boolean mayor = scan.nextBoolean();
-            Boletos ticket = new Boletos(cantidad, 3, mayor, dateFunction);
-            System.out.println("Este es su ticket");
-            String data = "Precio " + ticket.factura(cantidad) + " Asiento numero: " + ticket.nroAsiento(sala.getNroAsientosOcupados()) + " Numero de sala: " + sala.getNroSala();
-            informacion.add(data);
-            System.out.println(informacion);
-            sala.setNroAsientosOcupados(cantidad);
-            System.out.println("¿Desea realizar otra compra?");
-            continuar = scan.nextBoolean();
+                // SE DEBE SELECCIONAR LA FECHA A LA QUE SE DESEA ASISTIR
+                System.out.println("Seleccione la fecha a la que desea asistir: ");
+                int eleccionInt = scan.nextInt();
+                ArrayList<Object> horariosDisponibles = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1));
+                System.out.println(horariosDisponibles);
+                System.out.println("Seleccione el horario al que desea asistir");
+                int eleccionInt2 = scan.nextInt();
+                Object horario = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1)).get(eleccionInt2 - 1);
+                System.out.println(horario);
+                LocalDateTime dateFunction = LocalDateTime.of((LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1), (LocalTime) horario);
+                System.out.println("Ingrese la cantidad de boletos que desea: ");
+                int cantidad = scan.nextInt();
+                System.out.println("Ingrese si es mayor de edad: ");
+                boolean mayor = scan.nextBoolean();
+                Boletos ticket = new Boletos(cantidad, 3, mayor, dateFunction);
+                System.out.println("Este es su ticket");
+                String data = "Precio " + ticket.factura(cantidad) + " Asiento numero: " + ticket.nroAsiento(sala.getNroAsientosOcupados()) + " Numero de sala: " + sala.getNroSala();
+                informacion.add(data);
+                System.out.println(informacion);
+                sala.setNroAsientosOcupados(cantidad);
+                System.out.println("¿Desea realizar otra compra?");
+                continuar = scan.nextBoolean();
+            } catch (Exception e) {
+                System.out.println("Algo no anda bien: " + e);
+            }
         }
         Imprimir impresora = new Imprimir();
         impresora.exportar(String.valueOf(informacion));
