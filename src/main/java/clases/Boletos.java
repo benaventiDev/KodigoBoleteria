@@ -1,7 +1,7 @@
 package clases;
 import interfaces.BoletosInterface;
 
-public class Boletos<T> implements BoletosInterface {
+public class Boletos<T> extends Salas implements BoletosInterface {
     public int cantidad, iD;
     public boolean adulto;
     public final T fechaFuncion;
@@ -38,23 +38,14 @@ public class Boletos<T> implements BoletosInterface {
     }
 
     @Override
-    public double factura() {
-        if (adulto) { return precio * 0.70; }
-        else return precio;
+    public double factura(int cantidad) {
+        if (this.adulto) { return precio * 0.70 * cantidad; }
+        else return precio * cantidad;
     }
 
     @Override
-    public void nroAsiento() {
-
-    }
-
-    @Override
-    public void nroSala() {
-
-    }
-
-    @Override
-    public void getPelicula() {
-
+    public int nroAsiento(int asientosOcupados) {
+        Salas cine = new Salas();
+        return (int) Math.round(Math.random() * (cine.nroAsientosDisponibles(asientosOcupados) + 1));
     }
 }
