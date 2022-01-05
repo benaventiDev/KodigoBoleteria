@@ -21,7 +21,7 @@ public class App
         ArrayList<String> peliculas = new ArrayList();
         peliculas.add("psycho");
         peliculas.add("vertigo");
-        peliculas.add("citizen kane");
+        peliculas.add("citizen-kane");
         peliculas.add("casablanca");
 
         // FECHAS DISPONIBLES PARA CADA PELICULA EN CARTELERA
@@ -69,7 +69,7 @@ public class App
         HashMap<String, ArrayList<Object>> fechasLibres = new HashMap<>();
         fechasLibres.put("psycho", psychoFechas);
         fechasLibres.put("vertigo", vertigoFechas);
-        fechasLibres.put("citizen kane", citizenKaneFechas);
+        fechasLibres.put("citizen-kane", citizenKaneFechas);
         fechasLibres.put("casablanca", casablancaFechas);
 
         // CLAVE - VALOR PARA LAS HORAS DISPONIBLES EN CADA FECHA
@@ -116,7 +116,7 @@ public class App
         citizenKaneTime.add(citizenKaneTime2);
         citizenKaneTime.add(citizenKaneTime3);
         citizenKaneTime.add(citizenKaneTime4);
-        citizenKaneHoras.put("citizen kane", citizenKaneTime);
+        citizenKaneHoras.put("citizen-kane", citizenKaneTime);
         horasLibres.put(citizenKane1, citizenKaneHoras);
         horasLibres.put(citizenKane2, citizenKaneHoras);
         horasLibres.put(citizenKane3, citizenKaneHoras);
@@ -149,13 +149,13 @@ public class App
         
         while (continuar) {
             // SE INSTANCIAN LAS CLASES
-            Cartelera cartelera = new Cartelera(10, peliculas, fechasLibres, horasLibres);
+            Cartelera cartelera = new Cartelera((int) Math.round(Math.random() * (10 + 1)), peliculas, fechasLibres, horasLibres);
             Salas sala = new Salas();
-            sala.setNroAsientosOcupados(10);
+            sala.setNroAsientosOcupados((int) Math.round(Math.random() * (sala.getNroAsientosTotales() + 1)));
 
             try {
                 System.out.println(cartelera.getCarteleraPeliculas());
-                // EL USUARIO INGRESA UN ENTERO SEGUN LA POSICION DE LA PELICULA QUE SE MUESTRA EN PANTALLA
+                // EL USUARIO INGRESA UN STRING DE LA PELICULA QUE SE MUESTRA EN PANTALLA
                 String eleccion = scan.next().toLowerCase();
                 sala.setNroSala((int) Math.round(Math.random() * (10 + 1)));
 
@@ -177,9 +177,9 @@ public class App
                 int cantidad = scan.nextInt();
                 System.out.println("Ingrese si es mayor de edad: ");
                 boolean mayor = scan.nextBoolean();
-                Boletos ticket = new Boletos(cantidad, 3, mayor, dateFunction);
+                Boletos ticket = new Boletos(cantidad, (int) Math.round(Math.random() * (100 + 1)), mayor, dateFunction);
                 System.out.println("Este es su ticket");
-                String data = "Precio " + ticket.factura(cantidad) + " Asiento numero: " + ticket.nroAsiento(sala.getNroAsientosOcupados()) + " Numero de sala: " + sala.getNroSala();
+                String data = "Precio " + ticket.factura(cantidad) + " Numero de asiento: " + ticket.nroAsiento(sala.getNroAsientosOcupados()) + " Numero de sala: " + sala.getNroSala();
                 informacion.add(data);
                 System.out.println(informacion);
                 sala.setNroAsientosOcupados(cantidad);
