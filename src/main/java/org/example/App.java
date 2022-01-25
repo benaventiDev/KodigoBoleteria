@@ -1,189 +1,80 @@
 package org.example;
 
-import clases.Boletos;
-import clases.Cartelera;
-import clases.Imprimir;
-import clases.Salas;
+import clases.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
-public class App 
+@SuppressWarnings("ALL")
+public class App
 {
+    public static int randomNum(int num) {
+        return (int) Math.round(Math.random() * (num + 1));
+    }
+
     public static void main( String[] args )
     {
-        // A FALTA DE UNA DB ES NECESARIO CREAR Y CARGAR ARRAYS MANUALMENTE
-        // PELICULAS DISPONIBLES EN CARTELERA
-        ArrayList<String> peliculas = new ArrayList();
-        peliculas.add("psycho");
-        peliculas.add("vertigo");
-        peliculas.add("citizen-kane");
-        peliculas.add("casablanca");
-
-        // FECHAS DISPONIBLES PARA CADA PELICULA EN CARTELERA
-        ArrayList<Object> psychoFechas = new ArrayList();
-        LocalDate psycho1 = LocalDate.of(2021, 12, 11);
-        LocalDate psycho2 = LocalDate.of(2021, 11, 12);
-        LocalDate psycho3 = LocalDate.of(2021, 10, 13);
-        LocalDate psycho4 = LocalDate.of(2021, 9, 14);
-        psychoFechas.add(psycho1);
-        psychoFechas.add(psycho2);
-        psychoFechas.add(psycho3);
-        psychoFechas.add(psycho4);
-
-        ArrayList<Object> vertigoFechas = new ArrayList();
-        LocalDate vertigo1 = LocalDate.of(2021, 8, 10);
-        LocalDate vertigo2 = LocalDate.of(2021, 7, 7);
-        LocalDate vertigo3 = LocalDate.of(2021, 6, 6);
-        LocalDate vertigo4 = LocalDate.of(2021, 5, 5);
-        vertigoFechas.add(vertigo1);
-        vertigoFechas.add(vertigo2);
-        vertigoFechas.add(vertigo3);
-        vertigoFechas.add(vertigo4);
-
-        ArrayList<Object> citizenKaneFechas = new ArrayList();
-        LocalDate citizenKane1 = LocalDate.of(2021, 4, 1);
-        LocalDate citizenKane2 = LocalDate.of(2021, 3, 2);
-        LocalDate citizenKane3 = LocalDate.of(2021, 2, 3);
-        LocalDate citizenKane4 = LocalDate.of(2021, 1, 4);
-        citizenKaneFechas.add(citizenKane1);
-        citizenKaneFechas.add(citizenKane2);
-        citizenKaneFechas.add(citizenKane3);
-        citizenKaneFechas.add(citizenKane4);
-
-        ArrayList<Object> casablancaFechas = new ArrayList();
-        LocalDate casablanca1 = LocalDate.of(2021, 9, 27);
-        LocalDate casablanca2 = LocalDate.of(2021, 9, 26);
-        LocalDate casablanca3 = LocalDate.of(2021, 9, 25);
-        LocalDate casablanca4 = LocalDate.of(2021, 9, 28);
-        casablancaFechas.add(casablanca1);
-        casablancaFechas.add(casablanca2);
-        casablancaFechas.add(casablanca3);
-        casablancaFechas.add(casablanca4);
-
-        // CLAVE - VALOR PARA LLAMAR MEDIANTE UN ID LAS FECHAS DISPONIBLES DE UNA PELICULA
-        HashMap<String, ArrayList<Object>> fechasLibres = new HashMap<>();
-        fechasLibres.put("psycho", psychoFechas);
-        fechasLibres.put("vertigo", vertigoFechas);
-        fechasLibres.put("citizen-kane", citizenKaneFechas);
-        fechasLibres.put("casablanca", casablancaFechas);
-
-        // CLAVE - VALOR PARA LAS HORAS DISPONIBLES EN CADA FECHA
-        HashMap<Object, HashMap<String, ArrayList<Object>>> horasLibres = new HashMap<>();
-        HashMap<String, ArrayList<Object>> psychoHoras = new HashMap<>();
-        ArrayList<Object> psychoTime = new ArrayList<Object>();
-        LocalTime psychoTime1 = LocalTime.of(18, 30);
-        LocalTime psychoTime2 = LocalTime.of(19, 00);
-        LocalTime psychoTime3 = LocalTime.of(20, 30);
-        LocalTime psychoTime4 = LocalTime.of(21, 00);
-        psychoTime.add(psychoTime1);
-        psychoTime.add(psychoTime2);
-        psychoTime.add(psychoTime3);
-        psychoTime.add(psychoTime4);
-        psychoHoras.put("psycho", psychoTime);
-        horasLibres.put(psycho1, psychoHoras);
-        horasLibres.put(psycho2, psychoHoras);
-        horasLibres.put(psycho3, psychoHoras);
-        horasLibres.put(psycho4, psychoHoras);
-
-        HashMap<String, ArrayList<Object>> vertigoHoras = new HashMap<>();
-        ArrayList<Object> vertigoTime = new ArrayList<Object>();
-        LocalTime vertigoTime1 = LocalTime.of(16, 30);
-        LocalTime vertigoTime2 = LocalTime.of(17, 00);
-        LocalTime vertigoTime3 = LocalTime.of(22, 30);
-        LocalTime vertigoTime4 = LocalTime.of(23, 00);
-        vertigoTime.add(vertigoTime1);
-        vertigoTime.add(vertigoTime2);
-        vertigoTime.add(vertigoTime3);
-        vertigoTime.add(vertigoTime4);
-        vertigoHoras.put("vertigo", vertigoTime);
-        horasLibres.put(vertigo1, vertigoHoras);
-        horasLibres.put(vertigo2, vertigoHoras);
-        horasLibres.put(vertigo3, vertigoHoras);
-        horasLibres.put(vertigo4, vertigoHoras);
-
-        HashMap<String, ArrayList<Object>> citizenKaneHoras = new HashMap<>();
-        ArrayList<Object> citizenKaneTime = new ArrayList<Object>();
-        LocalTime citizenKaneTime1 = LocalTime.of(12, 30);
-        LocalTime citizenKaneTime2 = LocalTime.of(13, 00);
-        LocalTime citizenKaneTime3 = LocalTime.of(14, 30);
-        LocalTime citizenKaneTime4 = LocalTime.of(15, 00);
-        citizenKaneTime.add(citizenKaneTime1);
-        citizenKaneTime.add(citizenKaneTime2);
-        citizenKaneTime.add(citizenKaneTime3);
-        citizenKaneTime.add(citizenKaneTime4);
-        citizenKaneHoras.put("citizen-kane", citizenKaneTime);
-        horasLibres.put(citizenKane1, citizenKaneHoras);
-        horasLibres.put(citizenKane2, citizenKaneHoras);
-        horasLibres.put(citizenKane3, citizenKaneHoras);
-        horasLibres.put(citizenKane4, citizenKaneHoras);
-
-        HashMap<String, ArrayList<Object>> casablancaHoras = new HashMap<>();
-        ArrayList<Object> casablancaTime = new ArrayList<Object>();
-        LocalTime casablancaTime1 = LocalTime.of(8, 30);
-        LocalTime casablancaTime2 = LocalTime.of(9, 00);
-        LocalTime casablancaTime3 = LocalTime.of(10, 30);
-        LocalTime casablancaTime4 = LocalTime.of(11, 00);
-        casablancaTime.add(casablancaTime1);
-        casablancaTime.add(casablancaTime2);
-        casablancaTime.add(casablancaTime3);
-        casablancaTime.add(casablancaTime4);
-        casablancaHoras.put("casablanca", casablancaTime);
-        horasLibres.put(casablanca1, casablancaHoras);
-        horasLibres.put(casablanca2, casablancaHoras);
-        horasLibres.put(casablanca3, casablancaHoras);
-        horasLibres.put(casablanca4, casablancaHoras);
-
-        ///////////////////////////////////////////////////////////////////////
+        DB database = new DB();
+        database.inicializarDB();
 
         boolean continuar = true;
+
         ArrayList<String> informacion = new ArrayList<>();
         System.out.println("Bienvenido a Cinecode, ¿que pelicula desea ver? ");
 
-        // INICIALIZO UN SCANNER PARA QUE EL USUARIO PUEDA INGRESAR DATOS
         Scanner scan = new Scanner(System.in);
         
         while (continuar) {
-            // SE INSTANCIAN LAS CLASES
-            Cartelera cartelera = new Cartelera((int) Math.round(Math.random() * (10 + 1)), peliculas, fechasLibres, horasLibres);
+            Cartelera cartelera = new Cartelera((int) randomNum(10), database.getPeliculas(), database.getFechasLibres(), database.getHorasLibres());
             Salas sala = new Salas();
-            sala.setNroAsientosOcupados((int) Math.round(Math.random() * (sala.getNroAsientosTotales() + 1)));
+            sala.setNroAsientosOcupados(randomNum(sala.getNroAsientosTotales()));
 
             try {
                 System.out.println(cartelera.getCarteleraPeliculas());
-                // EL USUARIO INGRESA UN STRING DE LA PELICULA QUE SE MUESTRA EN PANTALLA
+
                 String eleccion = scan.next().toLowerCase();
-                sala.setNroSala((int) Math.round(Math.random() * (10 + 1)));
+                sala.setNroSala(randomNum(10));
 
                 System.out.println("Estos son las fechas disponibles para esa pelicula: ");
-                // SE MUESTRAN EN PANTALLA LAS FECHAS DISPONIBLES PARA VER ESA PELICULA
                 System.out.println(cartelera.filtroFecha(eleccion));
-
-                // SE DEBE SELECCIONAR LA FECHA A LA QUE SE DESEA ASISTIR
                 System.out.println("Seleccione la fecha a la que desea asistir: ");
+
                 int eleccionInt = scan.nextInt();
                 ArrayList<Object> horariosDisponibles = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1));
+
                 System.out.println(horariosDisponibles);
                 System.out.println("Seleccione el horario al que desea asistir");
+
                 int eleccionInt2 = scan.nextInt();
                 Object horario = cartelera.hrDisponible(eleccion, (LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1)).get(eleccionInt2 - 1);
+
                 System.out.println(horario);
+
                 LocalDateTime dateFunction = LocalDateTime.of((LocalDate) cartelera.filtroFecha(eleccion).get(eleccionInt - 1), (LocalTime) horario);
+
                 System.out.println("Ingrese la cantidad de boletos que desea: ");
+
                 int cantidad = scan.nextInt();
+
                 System.out.println("Ingrese si es mayor de edad: ");
+
                 boolean mayor = scan.nextBoolean();
-                Boletos ticket = new Boletos(cantidad, (int) Math.round(Math.random() * (100 + 1)), mayor, dateFunction);
+                Boletos ticket = new Boletos(cantidad, randomNum(100), mayor, dateFunction);
+
                 System.out.println("Este es su ticket");
-                String data = "Precio " + ticket.factura(cantidad) + " Numero de asiento: " + ticket.nroAsiento(sala.getNroAsientosOcupados()) + " Numero de sala: " + sala.getNroSala();
+
+                String data = "Precio " + ticket.factura(cantidad) + " Numero de asiento: " + sala.nroAsiento(sala.getNroAsientosOcupados()) + " Numero de sala: " + sala.getNroSala();
                 informacion.add(data);
+
                 System.out.println(informacion);
+
                 sala.setNroAsientosOcupados(cantidad);
+
                 System.out.println("¿Desea realizar otra compra?");
+
                 continuar = scan.nextBoolean();
             } catch (Exception e) {
                 System.out.println("Algo no anda bien: " + e);

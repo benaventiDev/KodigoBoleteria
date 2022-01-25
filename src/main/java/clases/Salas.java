@@ -40,4 +40,9 @@ public class Salas implements SalasInterface {
     public int nroAsientosDisponibles(int nroAsientosOcupados) {
         return (nroAsientosTotales - nroAsientosOcupados);
     }
+
+    @Override
+    public int nroAsiento(int asientosOcupados) {
+        return (int) Math.round(Math.random() * (nroAsientosDisponibles(asientosOcupados) + 1));
+    }
 }
