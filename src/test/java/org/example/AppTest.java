@@ -30,3 +30,4 @@ public class AppTest
         test.getTotal();
     }
 }
+//test
